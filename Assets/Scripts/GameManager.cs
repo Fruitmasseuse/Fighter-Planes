@@ -33,3 +33,38 @@ public class GameManager : MonoBehaviour
         Instantiate(enemyB, new Vector3(-14f, Random.Range(6f, 2.5f), 0), Quaternion.identity);
     }
 }
+
+//Implementing the Life Tracker
+using UnityEngine;
+using UnityEngine.UI; 
+
+public class PlayerLives : MonoBehaviour
+{
+    public Text livesText;  // Reference to the UI Text of Lives
+    private int lives = 3;  // Starting number of Lives
+
+    void Start()
+    {
+        UpdateLivesText();  // Initialize the UI text
+    }
+
+    public void LoseLife()
+    {
+        if (lives > 0)
+        {
+            lives--;  // Decrease lives
+            UpdateLivesText();
+        }
+    }
+
+    public void GainLife()
+    {
+        lives++;  // Increase lives
+        UpdateLivesText();
+    }
+
+    private void UpdateLivesText()
+    {
+        livesText.text = "Lives: " + lives;  // Update the text with current life
+    }
+}
